@@ -26,7 +26,7 @@ const Home = ({ categories, products }: Props) => {
   return (
     <div className="">
       <Head>
-        <title>Apple Redesign</title>
+        <title>Bubble of Happiness</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -34,7 +34,7 @@ const Home = ({ categories, products }: Props) => {
 
       <Basket />
 
-      <main className="relative h-[200vh] bg-[#E7ECEE]">
+      <main className="relative h-[200vh] ">
         <Landing />
       </main>
       <section className="relative z-40 -mt-[100vh] min-h-screen bg-[#1B1B1B]">

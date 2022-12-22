@@ -12,6 +12,7 @@ import { selectBasketItems, selectBasketTotal } from "../redux/basketSlice";
 import CheckoutProduct from "../components/CheckoutProduct";
 import { fetchPostJSON } from "../utils/api-helpers";
 import getStripe from "../utils/get-stripejs";
+import PostMachineMap from "../components/PostMachineMap";
 
 function Checkout() {
   const items = useSelector(selectBasketItems);
@@ -68,7 +69,7 @@ function Checkout() {
   };
 
   return (
-    <div className="min-h-screen overflow-hidden bg-[#E7ECEE]">
+    <div className="min-h-screen overflow-hidden ">
       <Head>
         <title>Bag - Apple</title>
         <link rel="icon" href="/favicon.ico" />
@@ -120,12 +121,15 @@ function Checkout() {
                   </div>
                 </div>
 
-                <div className="flex justify-between pt-4 text-xl font-semibold">
+                <div className="flex justify-between  pt-4 text-xl font-semibold ">
                   <h4>Total</h4>
                   <h4>
                     <Currency quantity={basketTotal} currency="USD" />
                   </h4>
                 </div>
+              </div>
+              <div className="divide-y divide-gray-300">
+                <PostMachineMap />
               </div>
 
               <div className="my-14 space-y-4">
@@ -133,24 +137,8 @@ function Checkout() {
                   How would you like to check out?
                 </h4>
                 <div className="flex flex-col gap-4 md:flex-row">
-                  <div className="order-2 flex flex-1 flex-col items-center rounded-xl bg-gray-200 p-8 py-12 text-center">
-                    <h4 className="mb-4 flex flex-col text-xl font-semibold">
-                      <span>Pay Monthly</span>
-                      <span>with Apple Card</span>
-                      <span>
-                        $283.16/mo. at 0% APR<sup className="-top-1">◊</sup>
-                      </span>
-                    </h4>
-                    <Button title="Check Out with Apple Card Monthly Installments" />
-                    <p className="mt-2 max-w-[240px] text-[13px]">
-                      $0.00 due today, which includes applicable full-price
-                      items, down payments, shipping, and taxes.
-                    </p>
-                  </div>
-
                   <div className="flex flex-1 flex-col items-center space-y-8 rounded-xl bg-gray-200 p-8 py-12 md:order-2">
                     <h4 className="mb-4 flex flex-col text-xl font-semibold">
-                      Pay in full
                       <span>
                         <Currency quantity={basketTotal} currency="USD" />
                       </span>
