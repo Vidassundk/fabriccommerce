@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import "@splidejs/react-splide/css";
-
-import { comfortaa } from "../utility/fonts";
+import "@splidejs/react-splide/css/core";
+import Image from "next/image";
+import { comfortaa, coolvetica } from "../utility/fonts";
 import Button from "./Button";
 
 interface SlideProps {
@@ -12,29 +12,31 @@ interface SlideProps {
   message?: string;
   buttonMessage?: string;
   buttonLink?: string;
+  height: string | number;
 }
 
 const slides = [
   {
-    img: "https://images.unsplash.com/photo-1657299170935-31e068229885?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    img: "https://i.ibb.co/JQgYBMr/Pngtree-tube-vector-mock-up-empty-5205366.png",
     alt: "img1",
     backgroundColor: "#E9D2C0",
     message: "YAKA - ukrainietiška kosmetika",
     buttonMessage: "Produktai",
     buttonLink: "",
   },
+
   {
-    img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    alt: "img2",
-    backgroundColor: "#EDB458",
+    img: "https://i.ibb.co/JQgYBMr/Pngtree-tube-vector-mock-up-empty-5205366.png",
+    alt: "img3",
+    backgroundColor: "#57CC99",
     message: "",
     buttonMessage: "",
     buttonLink: "",
   },
   {
-    img: "https://images.unsplash.com/photo-1511688878353-3a2f5be94cd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-    alt: "img3",
-    backgroundColor: "#57CC99",
+    img: "https://i.ibb.co/JQgYBMr/Pngtree-tube-vector-mock-up-empty-5205366.png",
+    alt: "img2",
+    backgroundColor: "#EDB458",
     message: "",
     buttonMessage: "",
     buttonLink: "",
@@ -48,39 +50,46 @@ const Slide = ({
   img,
   alt,
   backgroundColor = "#FFA3A5",
+  height,
 }: SlideProps) => {
   return (
     <SplideSlide>
-      <div style={{ backgroundColor: backgroundColor }}>
-        <div className="bg-cover bg-left bg-no-repeat sm:bg-center">
-          <div className="py-48 px-5 text-center sm:w-5/6 sm:px-10 sm:text-left md:px-12 lg:w-3/4 xl:w-2/3 xl:px-24">
-            <h3
-              className={`${comfortaa.className} mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl`}
-            >
-              {message}
-            </h3>
-            <Button title={buttonMessage as string} />
-          </div>
-        </div>
-        <img
+      <div
+        style={{ backgroundColor: backgroundColor, height: height }}
+        className={`relative max-h-[1000px] bg-cover bg-left bg-no-repeat sm:bg-center bg-[${backgroundColor}]`}
+      >
+        <Image
           src={img}
           alt={alt}
-          className={`h-full w-full object-cover object-center opacity-0 bg-[${backgroundColor}]`}
+          fill
+          className={`-z-4 absolute  top-0 object-contain py-[100px] mix-blend-multiply `}
         />
+
+        {/* <div className="z-2 container absolute  mx-auto flex flex-col py-48 px-5">
+          <h3
+            className={`${coolvetica.className} mb-[40px] text-4xl text-white sm:text-4xl md:text-5xl lg:text-6xl`}
+          >
+            {message}
+          </h3>
+
+        </div> */}
       </div>
     </SplideSlide>
   );
 };
 
 const HeaderSlider = () => {
+  const height = "calc(100vh - 172px);";
+
   return (
-    <div className="container mx-auto mt-10 cursor-grab overflow-hidden rounded-lg bg-gray-50 shadow-md active:cursor-grabbing">
+    <div className="bg-gray-50active:cursor-grabbing  bg-gray-5 max-h-[1000px] cursor-grab overflow-hidden">
       <Splide
         aria-label="Slides"
         options={{
           perPage: 1,
-          height: "600px",
+          height: height,
           arrows: false,
+          snap: false,
         }}
       >
         {slides.map(
@@ -99,6 +108,7 @@ const HeaderSlider = () => {
               buttonLink={buttonLink}
               buttonMessage={buttonMessage}
               message={message}
+              height={height}
             />
           )
         )}

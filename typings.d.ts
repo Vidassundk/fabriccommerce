@@ -67,3 +67,21 @@ interface StripeProduct {
   };
 }
 Footer;
+
+// =============
+
+interface DropDownProps {
+  sectionTitle: string;
+  sectionItems: DropDownLink[];
+}
+
+interface DropDownLink {
+  linkName: string;
+  link?: string;
+}
+
+interface Menu {
+  sectionName: string;
+  sectionOptions?: DropDownProps[];
+  sectionImage?: string;
+}

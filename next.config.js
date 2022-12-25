@@ -7,6 +7,7 @@ module.exports = {
       "images.unsplash.com",
       "cdn.sanity.io",
       "lh3.googleusercontent.com",
+      "i.ibb.co",
     ],
   },
 };

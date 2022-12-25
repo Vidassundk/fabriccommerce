@@ -6,8 +6,9 @@ const SearchBar = () => {
       <input
         type="search"
         name="serch"
-        placeholder="ieskoti prekių ar prekinių ženklų"
-        className="h-10 w-full rounded-full bg-gray-50 px-5 pr-10 text-sm  focus:outline-none"
+        autoComplete="off"
+        placeholder="ieskoti prekių, prekinių ženklų..."
+        className="h-10 w-full rounded-full bg-gray-50 px-5 pr-10 text-sm transition-colors focus:bg-gray-100  focus:outline-none"
       />
       <button type="submit" className="absolute right-0 top-0 mt-3 mr-4">
         <svg
