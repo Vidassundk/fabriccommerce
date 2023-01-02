@@ -96,13 +96,24 @@ const DraggableGallery = () => {
   return (
     <div
       style={{ height: "calc(100vh - 172px)" }}
-      className="relative max-h-[1000px] bg-gradient-to-r from-[#CDC2B6] to-[#D4CCC3]"
+      className="relative max-h-[1000px] "
     >
+      <video
+        autoPlay
+        muted
+        loop
+        className="absolute inset-0 -z-10 h-full w-full bg-red-300 object-cover "
+        id="myVideo"
+      >
+        <source src="/background2.mp4" type="video/mp4" />
+      </video>
+      <div className="w-ful absolute inset-0 -z-10 h-full bg-gradient-to-r from-[#CDC2B6]  to-[#D4CCC3] opacity-90 backdrop-contrast-100" />
+
       <div className="pointer-events-none absolute inset-0 z-20 flex h-full w-full items-center justify-center">
         <h2
-          className={`text-center text-[50px] leading-tight text-black ${coolvetica.className}`}
+          className={`text-center text-[50px] leading-tight text-white ${coolvetica.className}`}
         >
-          <b>BoH 2023</b>
+          <b></b>
         </h2>
       </div>
       <div
