@@ -10,8 +10,8 @@ const DropDownSection = ({ sectionTitle, sectionItems }: DropDownProps) => {
         {sectionTitle}
       </h4>
       <ul>
-        {sectionItems.map((item) => (
-          <DropDownLink link={item.link} linkName={item.linkName} />
+        {sectionItems.map((item, index) => (
+          <DropDownLink key={index} link={item.link} linkName={item.linkName} />
         ))}
       </ul>
     </div>
@@ -33,8 +33,8 @@ const DropDownLink = ({ link = "/", linkName }: DropDownLink) => {
 
 const NavDropdown = ({ sectionName, sectionOptions, sectionImage }: Menu) => {
   return (
-    <li className="group mr-10 hidden cursor-pointer lg:block">
-      <div className="flex items-center border-b-[1.9px] border-white pb-1 transition-colors group-hover:border-black">
+    <li className="group hidden cursor-pointer lg:block">
+      <div className="flex items-center border-b-[1.9px] border-white transition-colors group-hover:border-black">
         <span
           className={`cursor-pointer px-2 text-sm ${inter.className} transition-all`}
         >
@@ -58,7 +58,7 @@ const NavDropdown = ({ sectionName, sectionOptions, sectionImage }: Menu) => {
 
       {sectionOptions && (
         <div
-          className={`pointer-events-none absolute top-0 left-0 right-0 z-50 mx-auto mt-40 ${
+          className={`pointer-events-none absolute top-0 left-0 right-0 z-50 mx-auto mt-[80px] ${
             sectionOptions?.length > 2 ? "w-2/3" : "w-1/2"
           } pt-10 opacity-0 group-hover:pointer-events-auto group-hover:opacity-100`}
         >

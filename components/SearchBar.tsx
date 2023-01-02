@@ -2,15 +2,15 @@ import React from "react";
 
 const SearchBar = () => {
   return (
-    <form className="relative text-black ">
+    <form className="relative w-full text-black">
       <input
         type="search"
         name="serch"
         autoComplete="off"
-        placeholder="ieskoti prekių, prekinių ženklų..."
+        placeholder="ieskoti prekių..."
         className="h-10 w-full rounded-full bg-gray-50 px-5 pr-10 text-sm transition-colors focus:bg-gray-100  focus:outline-none"
       />
-      <button type="submit" className="absolute right-0 top-0 mt-3 mr-4">
+      <button type="submit" className="absolute right-0 top-0 mt-3 mr-4 px-4">
         <svg
           className="h-4 w-4 fill-current"
           xmlns="http://www.w3.org/2000/svg"

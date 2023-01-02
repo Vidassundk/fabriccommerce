@@ -82,7 +82,7 @@ const HeaderSlider = () => {
   const height = "calc(100vh - 172px);";
 
   return (
-    <div className="bg-gray-50active:cursor-grabbing  bg-gray-5 max-h-[1000px] cursor-grab overflow-hidden">
+    <div className="bg-gray-5 max-h-[1000px]  cursor-grab overflow-hidden bg-gray-50 active:cursor-grabbing">
       <Splide
         aria-label="Slides"
         options={{
