@@ -71,25 +71,20 @@ const data = [
 
 const MiniFeaturesBlock = () => {
   return (
-    <div className="container mx-auto flex flex-col py-20 md:flex-row md:py-24">
-      {data.map(({ title, subtitle, icon }, index) => (
-        <div
-          key={index}
-          className="mx-auto flex w-4/5 items-start justify-start pb-3 last:border-r-0 sm:w-1/2 md:w-2/5 md:flex-col md:items-center md:justify-center md:border-r-2 md:border-gray-200 md:pb-0 md:text-center lg:mx-0 lg:w-1/3 lg:flex-row lg:text-left"
-        >
-          <div className="text-primary">{icon}</div>
-
-          <div className="ml-9 md:mt-3 lg:mt-0">
-            <h3 className="font-hk text-xl font-semibold tracking-wide text-primary">
+    <section className="m-4  md:m-8">
+      <div className="container mx-auto grid justify-center gap-4 lg:grid-cols-3">
+        {data.map(({ title, subtitle }, index) => (
+          <div className="flex flex-col px-8 py-6">
+            <h2 className="title-font mb-2 text-lg font-semibold text-black sm:text-xl">
               {title}
-            </h3>
-            <p className="font-hk text-base tracking-wide text-secondary-lighter">
+            </h2>
+            <p className="mb-4 flex-1 text-base leading-relaxed dark:text-gray-400">
               {subtitle}
             </p>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </section>
   );
 };
 

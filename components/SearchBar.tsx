@@ -8,7 +8,7 @@ const SearchBar = () => {
         name="serch"
         autoComplete="off"
         placeholder="ieskoti prekių..."
-        className="h-10 w-full rounded-full bg-gray-50 px-5 pr-10 text-sm transition-colors focus:bg-gray-100  focus:outline-none"
+        className="h-10 w-full rounded-full bg-gray-50 bg-opacity-40 px-5 pr-10 text-sm placeholder-black placeholder-opacity-70 transition-colors focus:bg-opacity-90 focus:placeholder-opacity-90  focus:outline-none"
       />
       <button type="submit" className="absolute right-0 top-0 mt-3 mr-4 px-4">
         <svg

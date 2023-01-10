@@ -142,12 +142,12 @@ const GalleryProduct = ({
       >
         <div>
           <h4
-            className={`text-[11px] uppercase tracking-wider text-white ${inter.className}`}
+            className={`text-[13px] uppercase tracking-wider text-black opacity-80 ${inter.className}`}
           >
             {productName}
           </h4>
           <h2
-            className={`text-white" -ml-[1px] text-[44px] leading-tight text-white ${
+            className={` -ml-[1px] text-[44px] leading-tight text-black opacity-80 ${
               second && biggerfirstImage && "-mb-[12px]"
             }`}
           >

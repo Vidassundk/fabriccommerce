@@ -96,7 +96,7 @@ const DraggableGallery = () => {
   return (
     <div
       style={{ height: "calc(100vh - 172px)" }}
-      className="relative max-h-[1000px] "
+      className="relative max-h-[1000px] cursor-grab"
     >
       <video
         autoPlay
@@ -105,19 +105,19 @@ const DraggableGallery = () => {
         className="absolute inset-0 -z-10 h-full w-full bg-red-300 object-cover "
         id="myVideo"
       >
-        <source src="/background2.mp4" type="video/mp4" />
+        <source src="/background3.mp4" type="video/mp4" />
       </video>
-      <div className="w-ful absolute inset-0 -z-10 h-full bg-gradient-to-r from-[#CDC2B6]  to-[#D4CCC3] opacity-90 backdrop-contrast-100" />
+      <div className="w-ful absolute inset-0 -z-10 h-full bg-[#E8E0D9] opacity-80 backdrop-contrast-100" />
 
-      <div className="pointer-events-none absolute inset-0 z-20 flex h-full w-full items-center justify-center">
+      {/* <div className="pointer-events-none absolute inset-0 z-20 flex h-full w-full items-center justify-center">
         <h2
-          className={`text-center text-[50px] leading-tight text-white ${coolvetica.className}`}
+          className={`text-center text-[30px] leading-tight text-white ${coolvetica.className}`}
         >
-          <b></b>
+          <b>Mūsu naujienos</b>
         </h2>
-      </div>
+      </div> */}
       <div
-        className="relative flex h-full overflow-x-hidden overflow-x-scroll p-14 active:cursor-grabbing"
+        className="relative flex h-full overflow-x-hidden overflow-x-scroll overscroll-x-contain p-14 active:cursor-grabbing"
         {...events}
         ref={ref} // add reference and events to the wrapping div
       >

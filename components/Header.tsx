@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef, createRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectBasketItems } from "../redux/basketSlice";
 import { signIn, signOut, useSession } from "next-auth/react";
@@ -31,6 +31,12 @@ const data = [
           },
           {
             linkName: "Veido masažuoklės",
+          },
+          {
+            linkName: "Lūpų balzamai",
+          },
+          {
+            linkName: "Lūdažiai",
           },
         ],
       },
@@ -201,24 +207,6 @@ const data = [
     ],
   },
   {
-    sectionName: "Kosmetika",
-    sectionImage:
-      "https://images.unsplash.com/photo-1643185450492-6ba77dea00f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-    sectionOptions: [
-      {
-        sectionTitle: "Moterims",
-        sectionItems: [
-          {
-            linkName: "Lūpų balzamai",
-          },
-          {
-            linkName: "Lūdažiai",
-          },
-        ],
-      },
-    ],
-  },
-  {
     sectionName: "Namams",
     sectionImage:
       "https://images.unsplash.com/photo-1620733723429-0025a5c38b1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80",
@@ -239,18 +227,103 @@ const data = [
 ];
 
 const SubNav = () => {
+  const triangleWidth = 30;
+  const subNavGap = 10;
+
+  const myRefs = useRef([]);
+  myRefs.current = data.map((element, i) => myRefs.current[i] ?? createRef());
+
+  useEffect(() => {
+    if (myRefs?.current?.length) {
+      const newArrayOfWidths = myRefs.current.map(
+        (item) => item?.current.offsetWidth
+      );
+      if (newArrayOfWidths[0] !== 0) {
+        setArrayOfWidths(newArrayOfWidths);
+      }
+    }
+  }, [myRefs]);
+
+  const [activeTab, setActiveTab] = useState(0);
+  const [arrayOfWidths, setArrayOfWidths] = useState([]);
+  const [triangleDistance, setTriangleDistance] = useState(0);
+  // console.log(triangleDistance);
+  // console.log(arrayOfWidths);
+
+  useEffect(() => {
+    if (activeTab > 0) {
+      const previousSections = arrayOfWidths.slice(0, activeTab - 1);
+      const sum = previousSections.reduce((partialSum, a) => partialSum + a, 0);
+      setTriangleDistance(
+        sum +
+          subNavGap * (activeTab - 1) +
+          (arrayOfWidths[activeTab - 1] / 2 - triangleWidth / 2)
+      );
+    }
+  }, [activeTab]);
+
+  const mouseEnterHandler = (number: number) => {
+    setActiveTab(number);
+  };
+  const mouseLeaveHandler = () => {
+    setActiveTab(0);
+  };
+
+  const triangleSvg = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      version="1.0"
+      width={triangleWidth + "px"}
+      height="30px"
+      viewBox="0 0 1280.000000 640.000000"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <g
+        transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
+        fill="currentColor"
+        stroke="none"
+      >
+        <path d="M3198 3205 c-1759 -1756 -3198 -3196 -3198 -3199 0 -3 2880 -6 6400 -6 3520 0 6400 3 6400 7 0 7 -6388 6387 -6399 6390 -3 1 -1445 -1435 -3203 -3192z" />
+      </g>
+    </svg>
+  );
+
   return (
-    <div className=" justify-center">
-      <ul className="list-reset flex items-center gap-4">
+    <div
+      className="flex flex-col justify-center"
+      onMouseLeave={() => mouseLeaveHandler()}
+    >
+      <ul
+        style={{ gap: subNavGap + "px" }}
+        className={`list-reset flex items-center`}
+      >
         {data.map(({ sectionName, sectionOptions, sectionImage }, index) => (
           <NavDropdown
             key={index}
+            myRef={myRefs.current[index]}
             sectionName={sectionName}
             sectionOptions={sectionOptions}
             sectionImage={sectionImage}
+            onMouseEnter={() => mouseEnterHandler(index + 1)}
+            onMouseLeave={() => mouseLeaveHandler}
+            activeTab={activeTab === index + 1}
           />
         ))}
       </ul>
+      <div className="h-[0px]">
+        <div
+          className={`h-[60px] w-full transition-all ${
+            activeTab > 0 ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <div
+            style={{ paddingLeft: triangleDistance }}
+            className={`translate-y-[30px] text-white transition-all`}
+          >
+            {triangleSvg}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -261,7 +334,7 @@ function Header() {
 
   return (
     <>
-      <header className="container relative mx-auto px-[20px] lg:px-0">
+      <header className="container absolute top-0 right-0 left-0 z-50 mx-auto h-[122px] px-[20px] lg:px-0">
         <div className="shadow-xs relative z-50 py-6 lg:py-10">
           <div className="flex items-center justify-between gap-x-[10px] lg:gap-x-[50px]">
             <div className="flex items-center pb-[8px] pl-2">
@@ -271,7 +344,7 @@ function Header() {
               </div>
             </div>
 
-            <div className="flex  hidden w-auto flex-row-reverse items-center  xl:flex">
+            <div className="flex hidden w-auto flex-row-reverse items-center  xl:flex">
               <SubNav />
               {/* <IconButton
                 icon={

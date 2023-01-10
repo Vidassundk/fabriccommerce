@@ -19,7 +19,7 @@ const slides = [
   {
     img: "https://i.ibb.co/JQgYBMr/Pngtree-tube-vector-mock-up-empty-5205366.png",
     alt: "img1",
-    backgroundColor: "#E9D2C0",
+    backgroundColor: "#E3BAC6",
     message: "YAKA - ukrainietiška kosmetika",
     buttonMessage: "Produktai",
     buttonLink: "",
@@ -28,7 +28,7 @@ const slides = [
   {
     img: "https://i.ibb.co/JQgYBMr/Pngtree-tube-vector-mock-up-empty-5205366.png",
     alt: "img3",
-    backgroundColor: "#57CC99",
+    backgroundColor: "#D0D5DC",
     message: "",
     buttonMessage: "",
     buttonLink: "",
@@ -36,7 +36,24 @@ const slides = [
   {
     img: "https://i.ibb.co/JQgYBMr/Pngtree-tube-vector-mock-up-empty-5205366.png",
     alt: "img2",
+    backgroundColor: "#7CB69E",
+    message: "",
+    buttonMessage: "",
+    buttonLink: "",
+  },
+
+  {
+    img: "https://i.ibb.co/JQgYBMr/Pngtree-tube-vector-mock-up-empty-5205366.png",
+    alt: "img2",
     backgroundColor: "#EDB458",
+    message: "",
+    buttonMessage: "",
+    buttonLink: "",
+  },
+  {
+    img: "https://i.ibb.co/JQgYBMr/Pngtree-tube-vector-mock-up-empty-5205366.png",
+    alt: "img3",
+    backgroundColor: "#57CC99",
     message: "",
     buttonMessage: "",
     buttonLink: "",
@@ -62,27 +79,19 @@ const Slide = ({
           src={img}
           alt={alt}
           fill
-          className={`-z-4 absolute  top-0 object-contain py-[100px] mix-blend-multiply `}
+          className={`-z-4 absolute top-0 object-contain py-[200px] mix-blend-multiply `}
         />
-
-        {/* <div className="z-2 container absolute  mx-auto flex flex-col py-48 px-5">
-          <h3
-            className={`${coolvetica.className} mb-[40px] text-4xl text-white sm:text-4xl md:text-5xl lg:text-6xl`}
-          >
-            {message}
-          </h3>
-
-        </div> */}
       </div>
     </SplideSlide>
   );
 };
 
 const HeaderSlider = () => {
-  const height = "calc(100vh - 172px);";
+  const height = "100vh";
+  // const height = "calc(100vh - 172px);";
 
   return (
-    <div className="bg-gray-5 max-h-[1000px]  cursor-grab overflow-hidden bg-gray-50 active:cursor-grabbing">
+    <div className="bg-gray-5 max-h-[1000px] cursor-grab overflow-hidden  bg-gray-50 active:cursor-grabbing">
       <Splide
         aria-label="Slides"
         options={{
@@ -93,15 +102,12 @@ const HeaderSlider = () => {
         }}
       >
         {slides.map(
-          ({
-            img,
-            alt,
-            backgroundColor,
-            buttonLink,
-            buttonMessage,
-            message,
-          }) => (
+          (
+            { img, alt, backgroundColor, buttonLink, buttonMessage, message },
+            index
+          ) => (
             <Slide
+              key={index}
               img={img}
               alt={alt}
               backgroundColor={backgroundColor}

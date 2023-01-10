@@ -84,4 +84,8 @@ interface Menu {
   sectionName: string;
   sectionOptions?: DropDownProps[];
   sectionImage?: string;
+  activeTab?: boolean;
+  onMouseEnter: funcion;
+  onMouseLeave: funcion;
+  ref: LegacyRef<HTMLLIElement>;
 }

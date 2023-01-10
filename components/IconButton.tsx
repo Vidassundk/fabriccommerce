@@ -11,7 +11,7 @@ const IconButton = ({ icon, href, classes }: Props) => {
     return (
       <a
         href={href}
-        className={`flex cursor-pointer items-center rounded-full bg-white p-2 transition-all hover:bg-gray-100 ${classes}`}
+        className={`bg-transperant flex cursor-pointer items-center rounded-full p-2 transition-all hover:bg-gray-100 ${classes}`}
       >
         {icon}
       </a>
